@@ -15,3 +15,7 @@ updates:
       interval: weekly
     open-pull-requests-limit: 5
     labels: [dependencies]
+    ignore:
+      # Stay on actions/upload-artifact v4 (the e2e workflow's report upload); still take its v4 fixes.
+      - dependency-name: actions/upload-artifact
+        update-types: [version-update:semver-major]
