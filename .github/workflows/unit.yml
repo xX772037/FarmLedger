@@ -1,0 +1,33 @@
+name: Unit tests
+
+# Every push and every pull request, on every branch.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  # The job id and name are both "unit", so it can be picked as a required status check.
+  unit:
+    name: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+      # npm test exits non-zero when any test fails, which fails this job.
+      - name: Unit tests
+        run: npm test
+        env:
+          TZ: America/Chicago

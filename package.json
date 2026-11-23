@@ -1,0 +1,11 @@
+{
+  "name": "farmledger",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One stop shop for all farming and ranching records.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "license": "UNLICENSED"
+}
