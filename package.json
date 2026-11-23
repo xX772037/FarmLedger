@@ -5,7 +5,12 @@
   "description": "One stop shop for all farming and ranching records.",
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "test:e2e": "playwright test",
+    "start": "node scripts/serve.mjs"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
 }
