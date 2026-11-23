@@ -50,3 +50,7 @@ Every push to `main` publishes the site to GitHub Pages (`.github/workflows/stat
 - Dependabot checks npm packages and GitHub Actions weekly (`.github/dependabot.yml`). It stays on `actions/upload-artifact` v4.
 - To report a security problem, see [SECURITY.md](SECURITY.md).
 - Don't put real farm or ranch records (names, locations, animal IDs, prices) in issues, pull requests, tests or screenshots.
+
+## License
+
+MIT. See [LICENSE](LICENSE). Anyone may use, copy, change and share the code, including in paid products, as long as the copyright and license notice stay with it. It comes with no warranty.

@@ -9,7 +9,7 @@
     "test:e2e": "playwright test",
     "start": "node scripts/serve.mjs"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "@playwright/test": "1.63.0"
   }
