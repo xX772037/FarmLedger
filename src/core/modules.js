@@ -1,10 +1,24 @@
 // Feature modules plug into the core here, so the herd and crop parts never edit the same files:
 //   src/modules/herd/  (Ranch-working branch)  and  src/modules/crops/  (Farm-working branch).
 //
-// A module is { id, title, enterprise: 'livestock' | 'crops', summary, route, render(el, ctx), today?(ctx) }:
-//   render   draws the module's screen into `el`; ctx = { store, farm, navigate }
-//   today    returns [{ text, due, href }] for the home screen's "Today" list (optional)
+// A module is { id, title, enterprise: 'livestock' | 'crops', summary, route, render?(el, ctx), today?(ctx) }:
+//   render   draws the module's screens into `el`. The address #/<route>/a/b arrives as ctx.path = ['a', 'b'].
+//   today    returns [{ text, href? }] for the home screen's "Today" list (optional)
 // A module with no render yet shows as "coming soon".
+//
+// ctx = {
+//   store     the current operation's records only: scope(store, opId) from store.js.
+//             put(type, data, { id }) / get / list / remove. Pick your own record types ('animal', 'crop-plan', ...).
+//   farm      the operation's profile; opId its id
+//   role, can(action)   permissions.js: check can('money') before showing money, can('edit') before forms
+//   navigate(path)      go to another screen, e.g. navigate('/herd/123')
+//   ui        ui.js: fieldsHTML / readFields / liveFields / showErrors for forms drawn from a field list (schema.js),
+//             listHTML, confirmClick, printButtonHTML + wirePrint, notesPanel(el, store, { type, id }) for notes and photos
+// }
+// Shared things to reuse rather than rebuild (entities.js): land (fields and pastures), contacts (buyers, vets),
+// supplies with stock on hand (vaccines, chemicals, seed), money entries, reminders (show on Today), notes.
+// Link a record to them with data.links = [{ type: 'land', id }] or a ref field; linkedRecords() finds them back.
+// A money entry made by a module (a calf sale, a grain ticket) should carry source: { type, id } of the record behind it.
 
 const registry = new Map();
 

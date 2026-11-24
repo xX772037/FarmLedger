@@ -1,10 +1,12 @@
 // Offline support: keep the app's own files on the device so it opens with no signal on the farm.
 // Every file the app loads must be listed here (test/offline.test.js checks it), or it won't open offline.
-const CACHE = 'farmledger-v1';
+const CACHE = 'farmledger-v2';
 const SHELL = [
   './', 'index.html', 'styles.css', 'manifest.webmanifest', 'icon.svg',
   'src/app.js',
-  'src/core/account.js', 'src/core/backup.js', 'src/core/db.js', 'src/core/farm.js', 'src/core/ids.js', 'src/core/modules.js', 'src/core/store.js',
+  'src/core/account.js', 'src/core/backup.js', 'src/core/dates.js', 'src/core/db.js', 'src/core/entities.js', 'src/core/farm.js', 'src/core/ids.js',
+  'src/core/inventory.js', 'src/core/links.js', 'src/core/migrate.js', 'src/core/modules.js', 'src/core/money.js', 'src/core/permissions.js',
+  'src/core/reminders.js', 'src/core/schema.js', 'src/core/store.js', 'src/core/ui.js',
   'src/modules/crops/index.js', 'src/modules/herd/index.js',
 ];
 

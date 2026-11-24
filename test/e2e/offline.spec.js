@@ -16,7 +16,8 @@ test('after one visit the app opens with no network, with the farm still there',
   await context.setOffline(true);
   await page.reload();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Offline Farm');
-  await page.getByRole('link', { name: 'Farm', exact: true }).click();
+  await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'More' }).click();
+  await page.getByRole('navigation', { name: 'More' }).getByRole('link', { name: /^Farm/ }).click();
   await page.getByLabel('County').fill('Davison');
   await page.getByRole('button', { name: 'Save changes' }).click();
   await expect(page.getByRole('status')).toHaveText('Saved.');

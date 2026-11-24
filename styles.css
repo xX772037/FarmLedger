@@ -47,7 +47,7 @@ h1[tabindex="-1"]:focus { outline: none; }
 
 form { display: grid; gap: 1rem; }
 .field { display: grid; gap: 0.35rem; }
-.field > span, legend { font-weight: 700; }
+.field > span, .field > label, legend { font-weight: 700; }
 .field small, .hint { color: var(--muted); font-size: 0.9rem; }
 input[type="text"], input[type="tel"], input[type="number"], select { min-height: 3.1rem; padding: 0.5rem 0.75rem; border: 2px solid var(--line-strong); border-radius: 10px; background: #fff; width: 100%; }
 fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
@@ -71,4 +71,37 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
   .appbar-nav { width: 100%; }
   .appbar-nav a { flex: 1 1 auto; justify-content: center; padding: 0 0.6rem; }
   .row .btn { flex: 1 1 100%; }
+}
+
+/* lists of records, the More menu, notes, money totals */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.rows a, .rows.plain li { display: flex; flex-direction: column; gap: 0.15rem; min-height: 3.2rem; justify-content: center; padding: 0.7rem 1rem; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); text-decoration: none; background: var(--surface); overflow-wrap: anywhere; }
+.rows.plain li { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+.rows a:hover { border-color: var(--accent); }
+.sub { color: var(--muted); }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.75rem; }
+.tiles a { display: grid; gap: 0.2rem; padding: 1rem 1.1rem; min-height: 4.5rem; border: 2px solid var(--line-strong); border-radius: var(--r); color: var(--ink); text-decoration: none; }
+.tiles a b { font-size: 1.15rem; color: var(--accent); }
+.today li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--line); }
+.today li.overdue b { color: var(--bad); }
+.switcher { max-width: 22rem; margin-top: 0.75rem; }
+textarea { min-height: 5.5rem; padding: 0.6rem 0.75rem; border: 2px solid var(--line-strong); border-radius: 10px; background: #fff; width: 100%; resize: vertical; }
+input[type="date"] { min-height: 3.1rem; padding: 0.5rem 0.75rem; border: 2px solid var(--line-strong); border-radius: 10px; background: #fff; width: 100%; }
+.money-in { display: flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; }
+.money-in input { flex: 1; min-width: 0; }
+.totals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 0; }
+.totals div { display: grid; gap: 0.2rem; }
+.totals dt { color: var(--muted); font-size: 0.9rem; }
+.totals dd { margin: 0; font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.notes li { display: grid; gap: 0.4rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line); }
+.notes img { max-width: 100%; height: auto; border-radius: 10px; }
+.print-only { display: none; }
+@media (max-width: 560px) { .totals { grid-template-columns: minmax(0, 1fr); } }
+@media print {
+  .appbar, .site-foot, .no-print, button, .btn, form, #notes { display: none !important; }
+  .print-only { display: block; font-size: 0.9rem; }
+  body { font-size: 12pt; }
+  .card { box-shadow: none; break-inside: avoid; }
+  .rows a { border: 0; border-bottom: 1px solid #999; border-radius: 0; padding: 0.3rem 0; min-height: 0; }
 }
