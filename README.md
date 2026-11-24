@@ -2,7 +2,27 @@
 
 One stop shop for all farming and ranching records.
 
-FarmLedger is at the very start: the site is a placeholder home page, and the testing and publishing setup is in place so features can be added safely.
+FarmLedger keeps a farm's or ranch's records in one place, for people moving off paper. The shared core is built: set up your farm, add the people on it, and keep everything on your phone or computer, with or without signal. The herd and crop records are next.
+
+## What's in the core
+
+- **Farm setup and profile:** name, owner, state and county, what you run (crops, livestock or both), acres.
+- **People and roles:** owner, worker (enters records, doesn't see money), viewer (read only, for a vet, agronomist, lender or landlord). Roles are saved now and take effect once cloud sign-in arrives.
+- **Works offline:** records are saved on the device (IndexedDB), and after the first visit the app opens with no signal.
+- **Backup file:** download everything in one file and restore it on another device, including straight from the setup screen on a new phone.
+- **Ready for cloud accounts:** every record has an id and a version, and every change is logged, so cloud sign-in and backup can plug in (`src/core/account.js`) once a provider is chosen. Until then there is no sign-in and no password.
+
+## How the code is laid out
+
+| Path | What it is |
+| --- | --- |
+| `src/core/` | Shared by everything: the data layer (`db.js`, `store.js`), farm and people (`farm.js`), backup (`backup.js`), accounts (`account.js`), module slots (`modules.js`) |
+| `src/modules/herd/` | Herd management. Built on the `Ranch-working` branch. |
+| `src/modules/crops/` | Crop management. Built on the `Farm-working` branch. |
+| `src/app.js` | Screens: setup, home ("Today"), Farm, People, Backup, and each module's screen |
+| `sw.js` | Offline support. Every file the app loads must be listed here; a test checks it. |
+
+The herd and crop work each stay inside their own folder, so the two branches never edit the same files. A module registers itself with `registerModule()` and gets a menu entry, a card on the home screen, and (optionally) items in the home screen's Today list. Until it has a screen it shows as "coming soon".
 
 ## Run it
 
@@ -36,8 +56,10 @@ Both must pass before a pull request is merged into `main`.
 | Branch | For |
 | --- | --- |
 | `main` | What's live. Changed only by merging a pull request. |
-| `Farm-working` | Farming (crops and fields) work in progress |
-| `Ranch-working` | Ranching (livestock) work in progress |
+| `Farm-working` | Farming (crops and fields) work in progress, in `src/modules/crops/` |
+| `Ranch-working` | Ranching (herd) work in progress, in `src/modules/herd/` |
+
+Shared changes (the core in `src/core/`, the screens in `src/app.js`) go on their own short-lived branch and into `main` first, then both working branches are updated from `main`.
 
 Work on `Farm-working` or `Ranch-working`, open a pull request into `main`, and merge it once `unit` and `e2e` are green.
 

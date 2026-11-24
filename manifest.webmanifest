@@ -1,0 +1,11 @@
+{
+  "name": "FarmLedger",
+  "short_name": "FarmLedger",
+  "description": "One stop shop for all farming and ranching records.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1b6b3f",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

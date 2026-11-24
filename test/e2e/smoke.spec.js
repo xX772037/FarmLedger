@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-// Smoke test: the home page loads and renders without errors. FarmLedger has no app features yet; add a
-// test for each feature (crops, livestock, ...) when it is built, not before.
-test('the home page loads and renders without errors', async ({ page }) => {
+// Smoke test: the app loads and renders without errors. On a device with no farm yet, that's the setup screen.
+test('the app loads, renders without errors, and opens on setup for a new device', async ({ page }) => {
   const errors = [];
   page.on('pageerror', e => errors.push(`page error: ${e.message}`));
   page.on('console', m => { if (m.type() === 'error') errors.push(`console error: ${m.text()}`); });
@@ -12,8 +11,8 @@ test('the home page loads and renders without errors', async ({ page }) => {
   const res = await page.goto('/');
   expect(res.status()).toBe(200);
   await expect(page).toHaveTitle('FarmLedger');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('FarmLedger');
-  await expect(page.locator('body')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'FarmLedger home' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Set up your farm');
   expect(failed).toEqual([]);
   expect(errors).toEqual([]);
 });

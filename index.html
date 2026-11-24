@@ -2,23 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FarmLedger</title>
 <meta name="description" content="One stop shop for all farming and ranching records.">
-<style>
-  :root { color-scheme: light; }
-  body { margin: 0; font: 18px/1.55 Verdana, system-ui, sans-serif; color: #111a15; background: #ffffff; }
-  main { max-width: 40rem; margin: 0 auto; padding: 3rem 16px; }
-  h1 { margin: 0 0 0.5rem; font-size: 2rem; color: #1b6b3f; }
-  p { margin: 0 0 1rem; }
-  .soon { color: #3e4b44; }
-</style>
+<meta name="theme-color" content="#1b6b3f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main>
-  <h1>FarmLedger</h1>
-  <p>One stop shop for all farming and ranching records.</p>
-  <p class="soon">Coming soon.</p>
+<header class="appbar">
+  <div class="appbar-in">
+    <a class="brand" href="#/" aria-label="FarmLedger home">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M5 27V14l11-8 11 8v13z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M12 27v-8h8v8M12 19l8 8M20 19l-8 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>FarmLedger</span>
+    </a>
+    <nav class="appbar-nav" id="nav" aria-label="Main" hidden></nav>
+  </div>
+</header>
+
+<main class="app" id="app" tabindex="-1">
+  <noscript><p class="note">FarmLedger needs JavaScript turned on.</p></noscript>
+  <p class="note" id="booting">Loading…</p>
 </main>
+
+<footer class="site-foot">
+  <span>Records stay on this device.</span>
+</footer>
+
+<script type="module" src="src/app.js"></script>
 </body>
 </html>

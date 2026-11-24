@@ -10,6 +10,8 @@ export default defineConfig({
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: `http://localhost:${PORT}/`,
+    // The offline service worker would carry data between tests; only the offline test turns it on.
+    serviceWorkers: 'block',
     trace: process.env.CI ? 'retain-on-failure' : 'off',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],

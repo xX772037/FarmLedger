@@ -9,4 +9,6 @@ Please **don't open a public issue** for a security problem. Email the repositor
 FarmLedger is for farm and ranch records: crops, fields, animals and sales. Those can include names, land locations and money, so:
 
 - Don't put real records in issues, pull requests, tests or screenshots. Use made-up examples.
-- This section will say where FarmLedger keeps records, and what (if anything) it sends to outside services, once the app stores data. Until then, nothing in this repository stores or sends records.
+- **Where records are kept:** in the browser on the device that entered them (IndexedDB). There are no accounts and no server yet; records leave the device only when the user downloads a backup file. FarmLedger contacts no outside services.
+- Backup files are plain JSON and are not encrypted: keep them somewhere private.
+- When cloud accounts are added (`src/core/account.js`), this section will say where records are stored online and who can see them.
